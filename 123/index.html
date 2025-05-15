@@ -78,7 +78,93 @@
                                                                 <li>👁️ 觀看次數</li>
                                                                 <li>🕒 上傳時間</li>
                                                                 </ul>
-                                                                <h1><strong>程式如下</strong></h1>
+                                                                <h2><strong>程式如下</strong></h2>
+								<br>
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
+from webdriver_manager.chrome import ChromeDriverManager
+import pandas as pd
+import time
+
+# 設定 Chrome 選項
+options = webdriver.ChromeOptions()
+options.add_argument("--disable-blink-features=AutomationControlled")
+options.add_argument("--start-maximized")
+
+# 啟動瀏覽器
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+driver.get("https://www.youtube.com/")
+
+# 搜尋 SEVENTEEN 歌曲
+try:
+    time.sleep(2)
+    search_box = driver.find_element(By.NAME, "search_query")
+    search_box.send_keys("SEVENTEEN song")
+    search_box.send_keys(Keys.ENTER)
+except NoSuchElementException:
+    print("找不到搜尋框")
+    driver.quit()
+    exit()
+
+# 等待搜尋結果載入
+time.sleep(3)
+
+# 捲動頁面以載入更多影片
+scroll_times = 5
+for i in range(scroll_times):
+    driver.execute_script("window.scrollTo(0, document.documentElement.scrollHeight);")
+    time.sleep(2)
+
+# 儲存影片資料
+video_data = []
+
+try:
+    videos = driver.find_elements(By.XPATH, '//ytd-video-renderer')
+    for video in videos:
+        try:
+            title_element = video.find_element(By.ID, 'video-title')
+            title = title_element.get_attribute('title')
+            link = title_element.get_attribute('href')
+
+            channel_element = video.find_element(By.XPATH, './/ytd-channel-name//a')
+            channel_name = channel_element.text
+
+            meta_info = video.find_elements(By.ID, 'metadata-line')
+            views = ""
+            upload_time = ""
+            if meta_info:
+                lines = meta_info[0].find_elements(By.TAG_NAME, 'span')
+                if len(lines) >= 2:
+                    views = lines[0].text
+                    upload_time = lines[1].text
+
+            if title and link:
+                video_data.append({
+                    "標題": title,
+                    "連結": link,
+                    "頻道": channel_name,
+                    "觀看次數": views,
+                    "上傳時間": upload_time
+                })
+                print(f"{title} | {channel_name} | {views} | {upload_time} | {link}")
+
+        except NoSuchElementException:
+            continue
+
+except NoSuchElementException:
+    print("找不到影片元素")
+
+# 關閉瀏覽器
+driver.quit()
+
+# 儲存為 CSV
+df = pd.DataFrame(video_data)
+df.to_csv("seventeen_youtube.csv", index=False, encoding="utf-8-sig")
+print("✅ 資料已儲存至seventeen_youtube.csv")
+
 
 								
 			                                        </section>

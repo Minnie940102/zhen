@@ -80,6 +80,7 @@
                                                                 </ul>
                                                                 <h2><strong>程式如下</strong></h2>
 								<br>
+<pre><code>
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -164,7 +165,24 @@ driver.quit()
 df = pd.DataFrame(video_data)
 df.to_csv("seventeen_youtube.csv", index=False, encoding="utf-8-sig")
 print("✅ 資料已儲存至seventeen_youtube.csv")
-
+</code></pre>
+✅ 方式二：加上 CSS 美化（可選）
+html
+複製
+編輯
+<style>
+pre code {
+  background-color: #f4f4f4;
+  padding: 15px;
+  display: block;
+  white-space: pre-wrap;
+  border-radius: 8px;
+  font-family: Consolas, monospace;
+  font-size: 14px;
+  color: #333;
+  overflow-x: auto;
+}
+</style>
 
 								
 			                                        </section>

@@ -65,35 +65,49 @@
 							<article id="work">
                                                         <h2 class="major">個人介紹</h2>
                                                         <span class="image main">
-								
-                                                        <style>
-  .container {
+								<style>
+  .intro-section {
     display: flex;
     align-items: flex-start;
+    gap: 20px; /* 圖片和文字間距 */
+    padding: 10px 0;
   }
-  .container img {
-    width: 200px;
+
+  .intro-section img {
+    width: 150px;
     height: auto;
-    margin-right: 20px;
-    border-radius: 8px; /* 圓角可選 */
+    border-radius: 8px;
+    object-fit: cover;
   }
-  .text-column {
+
+  .intro-text {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    font-size: 18px;
+    color: #fff; /* 白色字，依照你背景調整 */
+    font-size: 16px;
     line-height: 1.5;
-    color: #333;
+    max-width: 400px;
+  }
+
+  /* 如果需要調整整體標題字體大小也可加 */
+  h2 {
+    color: #fff;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
   }
 </style>
 
-<div class="container">
-  <img src="https://raw.githubusercontent.com/Minnie940102/zhen/refs/heads/main/5.jpg" alt="我的照片">
-  <div class="text-column">
-    <p>這是我在SEVENTEEN裡面最喜歡的一位成員，</p>
-    <p>他是崔勝哲 S.coups。</p>
+<section>
+  <h2>個人介紹</h2>
+  <div class="intro-section">
+    <img src="https://raw.githubusercontent.com/Minnie940102/zhen/refs/heads/main/5.jpg" alt="崔勝哲 S.coups 照片">
+    <div class="intro-text">
+      <p>這是我在 SEVENTEEN 裡面最喜歡的一位成員，</p>
+      <p>他是崔勝哲 S.coups。</p>
+    </div>
   </div>
-</div>
+</section>
 
                                                         </span>
                                                         <div class="info">

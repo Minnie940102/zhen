@@ -95,6 +95,9 @@
 						<!-- Work -->
 							<article id="work">
 								<h2 class="major">個人介紹</h2>
+								<span class="image main">
+
+                                                        </span>
 								 <h3>✎ 生活興趣</h3>
 		                                         <img src="https://raw.githubusercontent.com/Minnie940102/zhen/refs/heads/main/4.jpg" alt="我的偶像" width="150">
 							 <p>這是我在SEVENTEEN裡面最喜歡的一位成員,他是<a href="https://zh.wikipedia.org/zh-tw/%E5%B4%94%E5%8B%9D%E5%93%B2" target="_blank">崔勝哲S.coups</a>。</p>
@@ -140,6 +143,40 @@
   </div>
 </div>
 							</div>
+		 <style>
+  #work {
+    background-image: url('https://raw.githubusercontent.com/Minnie940102/zhen/refs/heads/main/5.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white; /* 背景深色時，讓文字變亮 */
+    position: relative;
+    padding: 2em;
+    border-radius: 10px;
+  }
+
+  /* 半透明黑色遮罩，讓文字更清楚 */
+  #work::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+    border-radius: 10px;
+  }
+
+  #work > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 避免圖片擋住背景，建議移除或改為其他用途 */
+  #work .image.main {
+    display: none;
+  }
+</style>
+		
 							</article>
 
 						<!-- About -->

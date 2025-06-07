@@ -498,23 +498,14 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 	   
 
 		   
-
-	   <!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
-
-<!-- ⭐ 自動回到最上方 Script ⭐ -->
 <script>
-  document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', () => {
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-      }, 400); // 等動畫切換文章後再往上滾
-    });
+  const main = document.getElementById('main');
+
+  const observer = new MutationObserver(() => {
+    window.scrollTo(0, 0);
   });
+
+  observer.observe(main, { childList: true, subtree: true });
 </script>
 
   </body>

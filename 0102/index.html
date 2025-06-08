@@ -178,14 +178,14 @@
 								<h2 class="major">爬蟲成果展示頁</h2>
 								<h2>🚓爬取政府資料開放平台：警察資料</h2>
 <p>以下是使用 <strong>Selenium</strong> 所撰寫的 Python 爬蟲，從 <a href="https://data.gov.tw/" target="_blank">政府資料開放平台</a> 搜尋「警察」，並將前 3 頁的資料標題與說明爬下來，輸出為 <code>data.csv</code>。</p>
-
-<pre><code class="language-python">
-	<ol>
+<ol> 
   <li>✅ 準備好 <strong>Selenium + ChromeDriver</strong> 的環境。</li>
   <li>✅ 使用 <code>webdriver_manager</code> 幫忙自動下載對應的驅動版本，避免手動安裝。</li>
   <li>✅ 匯入處理瀏覽器元素、等待網頁載入、錯誤處理等必要模組（如 <code>By</code>、<code>WebDriverWait</code>、<code>EC</code> 等）。</li>
   <li>✅ 準備後續功能：寫爬蟲流程、抓取資料、儲存為表格（CSV 檔）。</li>
 </ol>
+
+<pre><code class="language-python">
 from selenium import webdriver 
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -197,16 +197,14 @@ import pandas as pd
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
 </code></pre>
+								<h3>設定 Chrome 選項，啟動瀏覽器</h3>
 <pre><code class="language-python">								
-<h4>設定 Chrome 選項</h4>
 options = webdriver.ChromeOptions()
 options.add_argument("--disable-blink-features=AutomationControlled")
-</code></pre>
-# 開啟瀏覽器
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 driver.get("https://data.gov.tw/")
 driver.maximize_window()
-
+</code></pre>
 # 搜尋關鍵字：警察
 try:
     search_box = WebDriverWait(driver, 10).until(

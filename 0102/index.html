@@ -205,7 +205,8 @@ driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), opti
 driver.get("https://data.gov.tw/")
 driver.maximize_window()
 </code></pre>
-# 搜尋關鍵字：警察
+<h3>搜尋關鍵字：警察</h3>
+								<pre><code class="language-python">
 try:
     search_box = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, "searchbar-input"))
@@ -216,11 +217,11 @@ except NoSuchElementException:
     print("❌ 無法找到搜尋框")
     driver.quit()
     exit()
-
-# 儲存資料列表
+</code></pre>							
+<h3>儲存資料列表，抓取當頁資料</h3>
+								<pre><code class="language-python">
 data_list = []
 
-# 抓取當頁資料
 def extract_page_data():
     try:
         WebDriverWait(driver, 10).until(
@@ -237,8 +238,9 @@ def extract_page_data():
                 continue
     except Exception as e:
         print("❌ 抓取資料失敗：", e)
-
-# 爬取前 3 頁
+</code></pre>	
+<h3>爬取前 3 頁</h3>
+								<pre><code class="language-python">
 count = 0
 while count < 3:
     extract_page_data()
@@ -257,8 +259,9 @@ while count < 3:
     count += 1
 
 driver.quit()
-
-# 匯出 CSV
+</code></pre>
+<h3>匯出 CSV</h3>
+								<pre><code class="language-python">
 if data_list:
     df = pd.DataFrame(data_list)
     df.to_csv("data.csv", index=False, encoding="utf-8-sig")

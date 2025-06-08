@@ -136,6 +136,39 @@
                                                                      color: #fff;
                                                                        }
                                                                       </style>
+								 <style>
+  #work {
+    background-image: url('https://raw.githubusercontent.com/Minnie940102/zhen/refs/heads/main/5.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white; /* 背景深色時，讓文字變亮 */
+    position: relative;
+    padding: 2em;
+    border-radius: 10px;
+  }
+
+  /* 半透明黑色遮罩，讓文字更清楚 */
+  #work::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+    border-radius: 10px;
+  }
+
+  #work > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 避免圖片擋住背景，建議移除或改為其他用途 */
+  #work .image.main {
+    display: none;
+  }
+</style>
 							
 								
 							</article>

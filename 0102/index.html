@@ -176,11 +176,17 @@
 						<!-- About -->
 							<article id="about">
 								<h2 class="major">爬蟲成果展示頁</h2>
-								<p>爬蟲主題</p>
-								<h2>🚓 爬取政府資料開放平台：警察資料</h2>
-<p>以下是使用 <strong>Selenium</strong> 所撰寫的 Python 爬蟲，功能是從 <a href="https://data.gov.tw/" target="_blank">data.gov.tw</a> 搜尋「警察」，並將前 3 頁的資料標題與說明爬下來，輸出為 <code>data.csv</code>。</p>
+								<h2>🚓爬取政府資料開放平台：警察資料</h2>
+<p>以下是使用 <strong>Selenium</strong> 所撰寫的 Python 爬蟲，從 <a href="https://data.gov.tw/" target="_blank">政府資料開放平台</a> 搜尋「警察」，並將前 3 頁的資料標題與說明爬下來，輸出為 <code>data.csv</code>。</p>
 
 <pre><code class="language-python">
+	<ul>
+  <li>✅ 準備好 <strong>Selenium + ChromeDriver</strong> 的環境。</li>
+  <li>✅ 使用 <code>webdriver_manager</code> 幫忙自動下載對應的驅動版本，避免手動安裝。</li>
+  <li>✅ 匯入處理瀏覽器元素、等待網頁載入、錯誤處理等必要模組（如 <code>By</code>、<code>WebDriverWait</code>、<code>EC</code> 等）。</li>
+  <li>✅ 準備後續功能：寫爬蟲流程、抓取資料、儲存為表格（CSV 檔）。</li>
+</ul>
+
 from selenium import webdriver 
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -191,11 +197,13 @@ import time
 import pandas as pd
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
+</code></pre>
 
-# 設定 Chrome 選項
+<pre><code class="language-python">								
+<h2>設定 Chrome 選項</h2>
 options = webdriver.ChromeOptions()
 options.add_argument("--disable-blink-features=AutomationControlled")
-
+</code></pre>
 # 開啟瀏覽器
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 driver.get("https://data.gov.tw/")
@@ -262,17 +270,7 @@ if data_list:
 else:
     print("⚠️ 沒有抓到資料")
 </code></pre>
-🔧 選用的語法高亮方式（推薦）
-如果你要讓這段程式碼有漂亮的顏色語法，你可以加上：
 
-方法一：使用 highlight.js
-html
-複製
-編輯
-<!-- 加在 <head> -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-<script>hljs.highlightAll();</script>
 							</article>
 
 						<!-- Contact -->
